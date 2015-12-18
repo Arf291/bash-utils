@@ -1,16 +1,16 @@
 #!/usr/bin/env bats
 
-@test "no matched file" {
-	echo "Hello world" > tests/test1/hello.txt
-	bash match.sh tests/test1/ tests/test2/
+@test "no matched files" {
+	echo "Hello world" > match/tests/test1/hello.txt
+	bash match/match.sh match/tests/test1/ match/tests/test2/
 
 	result=$(ls -l result/ | wc -l)
 	[ $result -eq 0 ]
 }
 
 @test "one matched file" {
-	echo "Hello world!" > tests/test1/hello.txt
-	bash match.sh tests/test1/ tests/test2/
+	echo "Hello world!" > match/tests/test1/hello.txt
+	bash match/match.sh match/tests/test1/ match/tests/test2/
 
 	result=$(ls -l result/ | wc -l)
 	((result-=1))
